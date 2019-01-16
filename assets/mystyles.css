@@ -16,4 +16,12 @@ section {
   width: 100%;
   opacity: 0.3;
 }
+
+.selectors {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-line-pack: distribute;
+      align-content: space-around;
+}
 /*# sourceMappingURL=mystyles.css.map */

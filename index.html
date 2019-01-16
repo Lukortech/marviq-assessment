@@ -21,19 +21,22 @@
       <h1>Welcome!</h1>
       <p>Small preview for Marviq assessment task.</p>
   </section>
-  <section class="inputs">
+  <!--This part is for future use when data range becomes bigger
+
+<section class="inputs">
     <p>Choose the range from:to for your data preview.</p>
-    <!--This part is for future use as I have no data aside 3 machines on the ame day.-->
+    
     <form action="" method="post" id="dateRange">
       <label>Starting date:</label><input type="date" name="fromDate" id="" placeholder="">
       <label>To date:</label><input type="date" name="toDate" id="">
       <br/><label>And apply the data to the preview! </label><input type="button" value="submit">
     </form>
   </section>
+
+  -->
+  
   <section class="charts">
-
-    <div class="ct-chart ct-perfect-fourth"></div>
-
+  <div class="selectors">
     <select name="machine">
       <option value="m1" selected>Machine#1</option>
       <option value="m2">Machine#2</option>
@@ -96,6 +99,11 @@
       <option value="production" selected>PRODUCTION</option>
       <option value="scraps">SCRAP_PERCENTAGE</option>
     </select>
+  </div>
+      
+    <div class="ct-chart"></div>
+    <div class="ct-chart"></div>
+
   </section>
   <img class="floatie" src="https://pbs.twimg.com/profile_images/955360967449247745/g40nQZEW_400x400.jpg" alt="marviq logo" width="100" height="100">
   <script src="./assets/scripts.js"></script>

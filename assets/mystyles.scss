@@ -10,3 +10,7 @@ section{
 .flasher{
   position:fixed; top:0; background: #CCC; width:100%; opacity:0.3;
 }
+.selectors{
+  display: flex;
+  align-content: space-around;
+}
