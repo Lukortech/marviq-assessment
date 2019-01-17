@@ -14,3 +14,27 @@ section{
   display: flex;
   align-content: space-around;
 }
+
+@media only screen and (max-width:450px) { 
+	.charts{
+    display:flex;
+    flex-direction: column;
+  }
+  .flasher{
+    position:fixed; top:0; background: #CCC; width:100%; opacity:0.6; font-size:1em;
+  }
+}
+
+@media only screen and (max-width:900px) { 
+	.charts{
+    display:flex;
+    flex-direction: column;
+  }
+}
+
+.charts{
+  display:flex;
+}
+select{
+  margin: 0 0.4em; 
+}

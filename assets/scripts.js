@@ -1,28 +1,8 @@
 /* TASK PREVIEW
 Produce a page to report the machine statuses of the last 24 hours in the database (e.g. January 7th).
 
-The total net production for the machine (gross output minus scrap).
-function netProduction(machine){
-  return machine.PRODUCTION-(machine.PRODUCTION*machine.SCRAP_PERCENTAGE);
-}
-The percentage of scrap vs gross production.
-function scrapVsGross(machine){
-  var gross = machine.PRODUCTION;
-  var scrap = machine.PRODUCTION*machine.SCRAP_PERCENTAGE;
-  return 
-}
 
 
-
-
-
-
-
-
-
-
-
-The percentage of downtime for a machine.
 A graph/table showing the net production (gross production – scrap) for every hour.
 
 As a front end: [ https://www.marviq.com/assessment/index.php?page=a&from=2018-01-07%2000:00:00 ]
@@ -38,67 +18,9 @@ PRODUCTION: 549014
 SCRAP_PERCENTAGE: 0.034238792002505
 */
 
-/* CHART related stuff */
-
-(function chart1(){
-  var data = {
-    labels: ['Bananas', 'Apples', 'Grapes'],
-    series: [5, 2, 5]
-  };
-  var options = {
-    labelInterpolationFnc: function(value) {
-      return value[0]
-    }
-  };
-  var responsiveOptions = [
-    ['screen and (min-width: 640px)', {
-      chartPadding: 30,
-      labelOffset: 100,
-      labelDirection: 'explode',
-      labelInterpolationFnc: function(value) {
-        return value;
-      }
-    }],
-    ['screen and (min-width: 1024px)', {
-      labelOffset: 40,
-      chartPadding: 20
-    }]
-  ];
-  new Chartist.Pie('.ct-chart', data, options, responsiveOptions);
-})();
 
 
-
-(function chart2(){
-  var data = {
-    labels: ['mangos', 'kiwis', 'marakujas'],
-    series: [5, 2, 5]
-  };
-  var options = {
-    labelInterpolationFnc: function(value) {
-      return value[0]
-    }
-  };
-  var responsiveOptions = [
-    ['screen and (min-width: 640px)', {
-      chartPadding: 30,
-      labelOffset: 100,
-      labelDirection: 'explode',
-      labelInterpolationFnc: function(value) {
-        return value;
-      }
-    }],
-    ['screen and (min-width: 1024px)', {
-      labelOffset: 40,
-      chartPadding: 20
-    }]
-  ];
-  new Chartist.Pie('.ct-chart', data, options, responsiveOptions);
-})();
-
-
-
-var machinesDetailedInformation;
+var MACHINESDETAILEDINFORMATION;
 (function InitializeDatabase(){
   
   fetch("https://www.marviq.com/assessment/index.php?page=a&from=2018-01-07%2000:00:00")
@@ -108,7 +30,7 @@ var machinesDetailedInformation;
   })
   .then( json => {
     console.warn("We have succesfully initialized your database! [check `machinesDetailedInformation`]");
-    machinesDetailedInformation = json;
+    MACHINESDETAILEDINFORMATION = json;
     (function popup(){
       var flasher = `<span class="flasher">We have initialized the database! you're good to go! <i style="cursor:pointer;" class="fas fa-times" onclick="deleteFlasher();"></i></span>`;
       document.body.innerHTML = document.body.innerHTML + flasher;
@@ -125,6 +47,46 @@ var machinesDetailedInformation;
 function deleteFlasher(){ 
   document.body.removeChild(document.querySelector(".flasher"));
 };
-function getCertainMachine(number){
-  return machinesDetailedInformation[number];
+
+
+
+
+
+/* TASK REALTED FILTERS */
+
+//The total net production for the machine (gross output minus scrap).
+function netProduction(object){
+  var netProd = object.PRODUCTION-(object.PRODUCTION*object.SCRAP_PERCENTAGE);
+  return Number(netProd);
 }
+//The percentage of scrap vs gross production.
+function scrapVsGross(object){
+  var grossProd = object.PRODUCTION;
+  var scrap = object.PRODUCTION*object.SCRAP_PERCENTAGE;
+  return  Number(grossProd), Number(scrap);
+}
+//The percentage of downtime for a machine.
+function downtime(object){
+  var dt = 24*object.DOWNTIME_PERCENTAGE;
+  return Number(dt); //5.83333333333344 form m0 ( in hours )
+}
+
+
+
+
+
+function view_netProduction(){
+  var DTList = document.querySelector("#dtlisting"); // Place where the output will be shown.
+  
+  DTList.innerHTML = ''; // Cleaning it up, before update.
+
+  let tag_template = function(name, dt){
+    return `<label>Downtime of ${name}: <input type="number" id="${name}_dtime" value="${dt}" readonly="readonly"></label>`
+  }
+
+  MACHINESDETAILEDINFORMATION.forEach(machine => { // walking through enire arry of machines and getiing each machine downtime + rounding up to better show data.
+    DTList.innerHTML = DTList.innerHTML + tag_template(machine.MACHINE, Math.round(downtime(machine) * 100) / 100);
+  });
+  DTList.innerHTML = DTList.innerHTML + `<button onclick="view_netProduction();">update net production</button>`; // Inserting the button to keep the manual update() function availible for user
+}
+
