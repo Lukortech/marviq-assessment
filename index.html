@@ -37,17 +37,19 @@
   
   <section class="data-presentation">
   
-  <div class="charts data-tables" id="dtlisting">
+  <div class="charts data-tables" id="netProdListing">
     <button onclick="view_netProduction();">update net production</button>
   </div>
-  <br/>
-  <div class="charts data-tables">
-    <label>Downtime of machine#1: <input type="number" id="m1_dtime" readonly="readonly"></label>
-    <label>Downtime of machine#2: <input type="number" id="m2_dtime" readonly="readonly"></label>
-    <label>Downtime of machine#3: <input type="number" id="m3_dtime" readonly="readonly"></label>
-    <button onclick="view_downTime();">update down time</button>
+  <div class="charts data-tables" id="dtlisting">
+    <button onclick="view_downtime();">update down time</button>
   </div>
-  <br/>
+  <div class="charts data-tables" id="scrapVGrossListing">
+    <button onclick="view_scrapVsGross();">update scrap v gross</button>
+  </div>
+
+
+
+  
 
   <div class="selectors">
     <label>Starting hour<select id="hfrom" name="hour_from">

@@ -8,7 +8,7 @@ section{
   opacity: 0.4;
 }
 .flasher{
-  position:fixed; top:0; background: #CCC; width:100%; opacity:0.3;
+  position:fixed; top:0; background: #CCC; width:100%; opacity:0.3; padding: 0.1em;
 }
 .selectors{
   display: flex;
@@ -34,7 +34,12 @@ section{
 
 .charts{
   display:flex;
+  justify-content: space-evenly;
 }
-select{
+select, input {
   margin: 0 0.4em; 
+}
+
+div{
+  padding: 1em;
 }

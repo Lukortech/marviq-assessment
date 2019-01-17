@@ -1,12 +1,5 @@
 /* TASK PREVIEW
-Produce a page to report the machine statuses of the last 24 hours in the database (e.g. January 7th).
-
-
-
-A graph/table showing the net production (gross production – scrap) for every hour.
-
 As a front end: [ https://www.marviq.com/assessment/index.php?page=a&from=2018-01-07%2000:00:00 ]
-
 
 DATA PREVIEW
 DATETIME_FROM: "2018-01-07 00:00:00"
@@ -32,9 +25,12 @@ var MACHINESDETAILEDINFORMATION;
     console.warn("We have succesfully initialized your database! [check `machinesDetailedInformation`]");
     MACHINESDETAILEDINFORMATION = json;
     (function popup(){
-      var flasher = `<span class="flasher">We have initialized the database! you're good to go! <i style="cursor:pointer;" class="fas fa-times" onclick="deleteFlasher();"></i></span>`;
+      var flasher = `<span class="flasher">We have initialized the database! you're good to go! <i style="cursor:pointer; color:red;" class="fas fa-times" onclick="deleteFlasher();"></i></span>`;
       document.body.innerHTML = document.body.innerHTML + flasher;
     })();
+    view_netProduction();
+    view_downtime();
+    view_scrapVsGross();
   })
   .catch( err => {
     err.text().then( errorMessage => {
@@ -50,20 +46,16 @@ function deleteFlasher(){
 
 
 
-
-
-/* TASK REALTED FILTERS */
-
 //The total net production for the machine (gross output minus scrap).
 function netProduction(object){
   var netProd = object.PRODUCTION-(object.PRODUCTION*object.SCRAP_PERCENTAGE);
-  return Number(netProd);
+  return Number(Math.round(netProd * 100) / 100);
 }
 //The percentage of scrap vs gross production.
 function scrapVsGross(object){
   var grossProd = object.PRODUCTION;
   var scrap = object.PRODUCTION*object.SCRAP_PERCENTAGE;
-  return  Number(grossProd), Number(scrap);
+  return [Number(Math.round(scrap * 100) / 100) , Number(grossProd)];
 }
 //The percentage of downtime for a machine.
 function downtime(object){
@@ -72,21 +64,67 @@ function downtime(object){
 }
 
 
+//A graph/table showing the net production (gross production – scrap) for every hour.
+/*
+
+For
+Tommorow
+
+*/
 
 
 
+
+
+
+// All functions below are being calld when data is being fetched correcly. 
+// If I had more time I'd make it appear slowly instead of jumping at user out of nowhere! :)
 function view_netProduction(){
-  var DTList = document.querySelector("#dtlisting"); // Place where the output will be shown.
+  var netProdList = document.querySelector("#netProdListing");
   
-  DTList.innerHTML = ''; // Cleaning it up, before update.
+  netProdList.innerHTML = ''; 
+
+  let tag_template = function(name, net){
+    return `<div><label>Net production of ${name}: </label><input type="number" id="${name}_netprod" value="${net}" readonly="readonly"></div>`
+  }
+
+  MACHINESDETAILEDINFORMATION.forEach(machine => { 
+    netProdList.innerHTML = netProdList.innerHTML + tag_template(machine.MACHINE, netProduction(machine));
+  });
+  netProdList.innerHTML = netProdList.innerHTML + `<button onclick="view_netProduction();">update net production</button>`; 
+}
+
+function view_scrapVsGross(){
+  var scrapvgrossList = document.querySelector("#scrapVGrossListing");
+  
+  scrapvgrossList.innerHTML = ''; 
+
+  let tag_template = function(name, scrap, gross){
+    return `<div><label>Scrap vs Gross porduction of ${name}: </label><br/>
+              <label>scrap: <input type="number" id="${name}_scrap" value="${scrap}" readonly="readonly"></label><br/>
+              <label>gross: <input type="number" id="${name}_gross" value="${gross}" readonly="readonly"></label>
+            </div>`
+  }
+
+  MACHINESDETAILEDINFORMATION.forEach(machine => { 
+    scrapvgrossList.innerHTML = scrapvgrossList.innerHTML + tag_template(machine.MACHINE, scrapVsGross(machine)[0], scrapVsGross(machine)[1]);
+  });
+  scrapvgrossList.innerHTML = scrapvgrossList.innerHTML + `<button onclick="view_scrapVsGross();">update scrap v gross</button>`; 
+}
+
+function view_downtime(){
+  var dtList = document.querySelector("#dtlisting"); // Place where the output will be shown.
+  
+  dtList.innerHTML = ''; // Cleaning it up, before update.
 
   let tag_template = function(name, dt){
-    return `<label>Downtime of ${name}: <input type="number" id="${name}_dtime" value="${dt}" readonly="readonly"></label>`
+    return `<div><label>Downtime of ${name}: </label><input type="number" id="${name}_dtime" value="${dt}" readonly="readonly"><br/></div>`
   }
 
   MACHINESDETAILEDINFORMATION.forEach(machine => { // walking through enire arry of machines and getiing each machine downtime + rounding up to better show data.
-    DTList.innerHTML = DTList.innerHTML + tag_template(machine.MACHINE, Math.round(downtime(machine) * 100) / 100);
+    dtList.innerHTML = dtList.innerHTML + tag_template(machine.MACHINE, Math.round(downtime(machine) * 100) / 100);
   });
-  DTList.innerHTML = DTList.innerHTML + `<button onclick="view_netProduction();">update net production</button>`; // Inserting the button to keep the manual update() function availible for user
+  dtList.innerHTML = dtList.innerHTML + `<button onclick="view_downtime();">update downtime</button>`; // Inserting the button to keep the manual update() function availible for user
 }
+
 
