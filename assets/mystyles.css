@@ -62,16 +62,17 @@ section {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 1em 0;
 }
 
-select, input {
-  margin: 0 0.4em;
+.data-tables {
+  border: rgba(0, 0, 0, 0.5) 1px solid;
 }
 
-div {
-  padding: 1em;
-}
+/*select, input {
+  margin: 0 0.4em; 
+}*/
 /*# sourceMappingURL=mystyles.css.map */

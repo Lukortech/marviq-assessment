@@ -1,82 +1,38 @@
+function draw_chart(arg){
 
-function chart1(){
-  var data = {
-    labels: ['Bananas', 'Apples', 'Grapes'],
-    series: [5, 2, 5]
-  };
-  var options = {
-    labelInterpolationFnc: function(value) {
-      return value[0]
-    }
-  };
-  var responsiveOptions = [
-    ['screen and (min-width: 640px)', {
-      chartPadding: 10,
-      labelOffset: 40,
-      labelDirection: 'explode',
-      labelInterpolationFnc: function(value) {
-        return value;
-      }
-    }],
-    ['screen and (min-width: 1024px)', {
-      labelOffset: 40,
-      chartPadding: 10
-    }]
-  ];
-  new Chartist.Pie('#chart1', data, options, responsiveOptions);
+var dataToFill = retriveChartData(arg);
+
+// Load google charts
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+// Draw the chart and set the chart values
+function drawChart() {
+  var data = google.visualization.arrayToDataTable(
+    dataToFill
+  );
+
+  // Optional; add a title and set the width and height of the chart
+  var options = {'title':`Net production of Machine${arg+1}`, 'width':550, 'height':400};
+
+  // Display the chart inside the <div> element with id="piechart"
+  var chart = new google.visualization.PieChart(document.querySelector(`#piechart${arg}`));
+  chart.draw(data, options);
+}
 }
 
 
+//A graph/table showing the net production (gross production – scrap) for every hour.
 
-function chart2(){
-  var data = {
-    labels: ['mangos', 'kiwis', 'marakujas'],
-    series: [1, 4, 12]
-  };
-  var options = {
-    labelInterpolationFnc: function(value) {
-      return value[0]
-    }
-  };
-  var responsiveOptions = [
-    ['screen and (min-width: 640px)', {
-      chartPadding: 10,
-      labelOffset: 40,
-      labelDirection: 'explode',
-      labelInterpolationFnc: function(value) {
-        return value;
-      }
-    }],
-    ['screen and (min-width: 1024px)', {
-      labelOffset: 40,
-      chartPadding: 10
-    }]
-  ];
-  new Chartist.Pie('#chart2', data, options, responsiveOptions);
-}
-function chart3(labels,series){
-  var data = {
-    labels: labels,
-    series: series
-  };
-  var options = {
-    labelInterpolationFnc: function(value) {
-      return value[0]
-    }
-  };
-  var responsiveOptions = [
-    ['screen and (min-width: 640px)', {
-      chartPadding: 10,
-      labelOffset: 40,
-      labelDirection: 'explode',
-      labelInterpolationFnc: function(value) {
-        return value;
-      }
-    }],
-    ['screen and (min-width: 1024px)', {
-      labelOffset: 40,
-      chartPadding: 10
-    }]
-  ];
-  new Chartist.Pie('#chart3', data, options, responsiveOptions);
+function retriveChartData(arg){
+  var machineEntries = Object.entries(MACHINESDETAILEDINFORMATION[arg]);
+  var scrap_percentage = Number(machineEntries[27][1]);
+  machineEntries.splice(0,3);
+  machineEntries.splice(-3);
+  for (let index = 0; index < machineEntries.length; index++) {
+    machineEntries[index][1] = Number(machineEntries[index][1]) - (Number(machineEntries[index][1]) * scrap_percentage);
+  }
+  machineEntries.splice(0,0,["Hour", "Net production"]);
+  //foreach machineEntries[1] reassign value by scrap_percentage
+  return machineEntries;
 }

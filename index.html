@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="./assets/mystyles.css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" crossorigin="anonymous">
-
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
   <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
 </head>
@@ -109,17 +109,17 @@
       <option value="production" selected>PRODUCTION</option>
       <option value="scraps">SCRAP_PERCENTAGE</option>
     </select></label>
-    <button onclick="applyFilters();">Update charts</button>
+    <button onclick="applyFilters();" disabled>Update charts</button>
+    <small style="opacity:0.5;"> for future use as we get more options to run the dashboard</small>
   </div>
 
-  <div class="charts">
+  <div class="">
+    <div id="piechart0"></div>
     <br/>
-    <div id="chart1" class="ct-chart"></div>
-    <hr>
-    <div id="chart2" class="ct-chart"></div>
-    <hr>
-    <div id="chart3" class="ct-chart"></div>
+    <div id="piechart1"></div>
     <br/>
+    <div id="piechart2"></div>
+    <button onclick="draw_chart(0);draw_chart(1);draw_chart(2);">fill charts</button>
   </div> 
     
 

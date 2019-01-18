@@ -64,13 +64,6 @@ function downtime(object){
 }
 
 
-//A graph/table showing the net production (gross production – scrap) for every hour.
-/*
-
-For
-Tommorow
-
-*/
 
 
 
