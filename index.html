@@ -25,33 +25,23 @@
             <p>Small preview for Marviq assessment task.</p>
         </section>
         <!--This part is for future use when data range becomes bigger
+            
+        <section class="inputs">
+        <p>Choose the range from:to for your data preview.</p>
+        <form action="" method="post" id="dateRange">
+            <label>Starting date:</label>   <input type="date" name="fromDate" id="" placeholder="">
+            <label>To date:</label> <input type="date" name="toDate" id="">
+            <label>And apply the data to the preview! </label>  <input type="button" value="submit">
+        </form>
+        </section>
 
-    <section class="inputs">
-      <p>Choose the range from:to for your data preview.</p>
-
-      <form action="" method="post" id="dateRange">
-        <label>Starting date:</label><input type="date" name="fromDate" id="" placeholder="">
-        <label>To date:</label><input type="date" name="toDate" id="">
-        <br/><label>And apply the data to the preview! </label><input type="button" value="submit">
-      </form>
-    </section>
-
-    -->
+        -->
 
         <section class="data-presentation">
-
-            <div class="charts data-tables" id="netProdListing">
-                <!--Wszystkie buttony w dół są tylko w wersji debug
-                    
-                  <button onclick="view_netProduction();">update net production</button>-->
-            </div>
-            <div class="charts data-tables" id="dtlisting">
-                <!--<button onclick="view_downtime();">update down time</button>-->
-            </div>
-            <div class="charts data-tables" id="scrapVGrossListing">
-                <!--<button onclick="view_scrapVsGross();">update scrap v gross</button>-->
-            </div>
-
+            <div class="charts data-tables" id="states"></div>
+            <div class="charts data-tables" id="netProdListing"></div>
+            <div class="charts data-tables" id="dtlisting"></div>
+            <div class="charts data-tables" id="scrapVGrossListing"></div>
             <div class="selectors">
                 <label>Starting hour
                     <select id="hfrom" name="hour_from" disabled>
@@ -122,13 +112,9 @@
 
             <div class="">
                 <div id="piechart0"></div>
-                <br/>
                 <div id="piechart1"></div>
-                <br/>
                 <div id="piechart2"></div>
-                <!--<button onclick="view_charts();">Update charts</button>-->
             </div>
-
         </section>
     </div>
 
