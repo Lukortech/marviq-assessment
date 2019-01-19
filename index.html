@@ -1,131 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>For Marviq req. task</title>
-  <link rel="stylesheet" href="./assets/basestyles.css">
-  <link rel="stylesheet" href="./assets/mystyles.css">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" crossorigin="anonymous">
-
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
-  <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>For Marviq req. task</title>
+    <link rel="stylesheet" href="./assets/basestyles.css">
+    <link rel="stylesheet" href="./assets/mystyles.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" crossorigin="anonymous">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+    <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
 </head>
+
 <body>
+    <div class="loader"></div>
+    <small class="loader-welcomeMsg">Welcome to Marviq machine management system!</small>
+    <div class="wrapper animate-bottom">
 
+        <section class="header">
+            <h1>Welcome!</h1>
+            <p>Small preview for Marviq assessment task.</p>
+        </section>
+        <!--This part is for future use when data range becomes bigger
 
+    <section class="inputs">
+      <p>Choose the range from:to for your data preview.</p>
 
-  <section class="header">
-      <h1>Welcome!</h1>
-      <p>Small preview for Marviq assessment task.</p>
-  </section>
-  <!--This part is for future use when data range becomes bigger
+      <form action="" method="post" id="dateRange">
+        <label>Starting date:</label><input type="date" name="fromDate" id="" placeholder="">
+        <label>To date:</label><input type="date" name="toDate" id="">
+        <br/><label>And apply the data to the preview! </label><input type="button" value="submit">
+      </form>
+    </section>
 
-<section class="inputs">
-    <p>Choose the range from:to for your data preview.</p>
-    
-    <form action="" method="post" id="dateRange">
-      <label>Starting date:</label><input type="date" name="fromDate" id="" placeholder="">
-      <label>To date:</label><input type="date" name="toDate" id="">
-      <br/><label>And apply the data to the preview! </label><input type="button" value="submit">
-    </form>
-  </section>
+    -->
 
-  -->
-  
-  <section class="data-presentation">
-  
-  <div class="charts data-tables" id="netProdListing">
-    <button onclick="view_netProduction();">update net production</button>
-  </div>
-  <div class="charts data-tables" id="dtlisting">
-    <button onclick="view_downtime();">update down time</button>
-  </div>
-  <div class="charts data-tables" id="scrapVGrossListing">
-    <button onclick="view_scrapVsGross();">update scrap v gross</button>
-  </div>
+        <section class="data-presentation">
 
+            <div class="charts data-tables" id="netProdListing">
+                <!--Wszystkie buttony w dół są tylko w wersji debug
+                    
+                  <button onclick="view_netProduction();">update net production</button>-->
+            </div>
+            <div class="charts data-tables" id="dtlisting">
+                <!--<button onclick="view_downtime();">update down time</button>-->
+            </div>
+            <div class="charts data-tables" id="scrapVGrossListing">
+                <!--<button onclick="view_scrapVsGross();">update scrap v gross</button>-->
+            </div>
 
+            <div class="selectors">
+                <label>Starting hour
+                    <select id="hfrom" name="hour_from" disabled>
+                        <option value="0" selected> 12am </option>
+                        <option value="1"> 1am </option>
+                        <option value="2"> 2am </option>
+                        <option value="3"> 3am </option>
+                        <option value="4"> 4am </option>
+                        <option value="5"> 5am </option>
+                        <option value="6"> 6am </option>
+                        <option value="7"> 7am </option>
+                        <option value="8"> 8am </option>
+                        <option value="9"> 9am </option>
+                        <option value="10"> 10am </option>
+                        <option value="11"> 11am </option>
+                        <option value="12"> 12pm </option>
+                        <option value="13"> 1pm </option>
+                        <option value="14"> 2pm </option>
+                        <option value="15"> 3pm </option>
+                        <option value="16"> 4pm </option>
+                        <option value="17"> 5pm </option>
+                        <option value="18"> 6pm </option>
+                        <option value="19"> 7pm </option>
+                        <option value="20"> 8pm </option>
+                        <option value="21"> 9pm </option>
+                        <option value="22"> 10pm </option>
+                        <option value="23"> 11pm </option>
+                    </select>
+                </label>
+                <label>Ending hour
+                    <select id="hto" name="hour_to" disabled>
+                        <option value="0"> 12am </option>
+                        <option value="1"> 1am </option>
+                        <option value="2"> 2am </option>
+                        <option value="3"> 3am </option>
+                        <option value="4"> 4am </option>
+                        <option value="5"> 5am </option>
+                        <option value="6"> 6am </option>
+                        <option value="7"> 7am </option>
+                        <option value="8"> 8am </option>
+                        <option value="9"> 9am </option>
+                        <option value="10"> 10am </option>
+                        <option value="11"> 11am </option>
+                        <option value="12"> 12pm </option>
+                        <option value="13"> 1pm </option>
+                        <option value="14"> 2pm </option>
+                        <option value="15"> 3pm </option>
+                        <option value="16"> 4pm </option>
+                        <option value="17"> 5pm </option>
+                        <option value="18"> 6pm </option>
+                        <option value="19"> 7pm </option>
+                        <option value="20"> 8pm </option>
+                        <option value="21"> 9pm </option>
+                        <option value="22"> 10pm </option>
+                        <option value="23" selected> 11pm </option>
+                    </select>
+                </label>
+                <label>Option to chose
+                    <select id="filtername" name="option1" disabled>
+                        <option value="dtime"> DOWNTIME </option>
+                        <option value="production" selected> PRODUCTION </option>
+                        <option value="scraps"> SCRAP_PERCENTAGE </option>
+                    </select>
+                </label>
+                <button onclick="applyFilters();" disabled>Update charts</button>
+                <small style="opacity:0.5;"> for future use as we get more options to run the dashboard</small>
+            </div>
 
-  
+            <div class="">
+                <div id="piechart0"></div>
+                <br/>
+                <div id="piechart1"></div>
+                <br/>
+                <div id="piechart2"></div>
+                <!--<button onclick="view_charts();">Update charts</button>-->
+            </div>
 
-  <div class="selectors">
-    <label>Starting hour<select id="hfrom" name="hour_from">
-      <option value="0" selected> 12am </option>
-      <option value="1"> 1am </option>
-      <option value="2"> 2am </option>
-      <option value="3"> 3am </option>
-      <option value="4"> 4am </option>
-      <option value="5"> 5am </option>
-      <option value="6"> 6am </option>
-      <option value="7"> 7am </option>
-      <option value="8"> 8am </option>
-      <option value="9"> 9am </option>
-      <option value="10"> 10am </option>
-      <option value="11"> 11am </option>
-      <option value="12"> 12pm </option>
-      <option value="13"> 1pm </option>
-      <option value="14"> 2pm </option>
-      <option value="15"> 3pm </option>
-      <option value="16"> 4pm </option>
-      <option value="17"> 5pm </option>
-      <option value="18"> 6pm </option>
-      <option value="19"> 7pm </option>
-      <option value="20"> 8pm </option>
-      <option value="21"> 9pm </option>
-      <option value="22"> 10pm </option>
-      <option value="23"> 11pm </option>
-    </select></label>
-    <label>Ending hour<select id="hto" name="hour_to">
-      <option value="0"> 12am </option>
-      <option value="1"> 1am </option>
-      <option value="2"> 2am </option>
-      <option value="3"> 3am </option>
-      <option value="4"> 4am </option>
-      <option value="5"> 5am </option>
-      <option value="6"> 6am </option>
-      <option value="7"> 7am </option>
-      <option value="8"> 8am </option>
-      <option value="9"> 9am </option>
-      <option value="10"> 10am </option>
-      <option value="11"> 11am </option>
-      <option value="12"> 12pm </option>
-      <option value="13"> 1pm </option>
-      <option value="14"> 2pm </option>
-      <option value="15"> 3pm </option>
-      <option value="16"> 4pm </option>
-      <option value="17"> 5pm </option>
-      <option value="18"> 6pm </option>
-      <option value="19"> 7pm </option>
-      <option value="20"> 8pm </option>
-      <option value="21"> 9pm </option>
-      <option value="22"> 10pm </option>
-      <option value="23" selected> 11pm </option>
-    </select></label>
-    <label>Option to chose<select id="filtername" name="option1">
-      <option value="dtime">DOWNTIME</option>
-      <option value="production" selected>PRODUCTION</option>
-      <option value="scraps">SCRAP_PERCENTAGE</option>
-    </select></label>
-    <button onclick="applyFilters();">Update charts</button>
-  </div>
+        </section>
+    </div>
 
-  <div class="charts">
-    <br/>
-    <div id="chart1" class="ct-chart"></div>
-    <hr>
-    <div id="chart2" class="ct-chart"></div>
-    <hr>
-    <div id="chart3" class="ct-chart"></div>
-    <br/>
-  </div> 
-    
-
-  </section>
-  <img class="floatie" src="https://pbs.twimg.com/profile_images/955360967449247745/g40nQZEW_400x400.jpg" alt="marviq logo" width="100" height="100">
-  <script src="./assets/scripts.js"></script>
-  <script src="./assets/mycharts.js"></script>
+    <img class="floatie" src="https://pbs.twimg.com/profile_images/955360967449247745/g40nQZEW_400x400.jpg" alt="marviq logo" width="100" height="100">
+    <script src="./assets/scripts.js"></script>
+    <script src="./assets/mycharts.js"></script>
+    <script src="./assets/colouring.js"></script>
 </body>
+
 </html>
