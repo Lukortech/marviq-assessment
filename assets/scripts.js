@@ -104,5 +104,30 @@ function view_downtime(){
 function showPage() { // To avoid 'poping up' on user with the data.
   document.body.removeChild(document.querySelector(".loader"));
   document.body.removeChild(document.querySelector(".loader-welcomeMsg"));
-  document.querySelector(".wrapper").style.display = "block";
+  document.querySelector(".wrapper").style.display = "initial";
+  document.querySelector(".admin-panel").style.display = "block";
+}
+
+
+
+function hideElements(selectors){
+  selectors.forEach(element => {
+    document.querySelector(element).classList.remove('visible');
+  });
+}
+function show_states(){
+  hideElements(["#netProdListing","#dtlisting","#scrapVGrossListing"])
+  document.querySelector("#states").classList.add('visible');
+}
+function show_net(){
+  hideElements(["#states","#dtlisting","#scrapVGrossListing"])
+  document.querySelector("#netProdListing").classList.add('visible');
+}
+function show_dt(){
+  hideElements(["#states","#netProdListing","#scrapVGrossListing"])
+  document.querySelector("#dtlisting").classList.add('visible');
+}
+function show_svg(){
+  hideElements(["#states","#netProdListing","#dtlisting"])
+  document.querySelector("#scrapVGrossListing").classList.add('visible');
 }
