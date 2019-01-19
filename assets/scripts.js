@@ -1,9 +1,3 @@
-var MACHINESDETAILEDINFORMATION; 
-// The only global variable for other functions to use it (charts). 
-//I am not enclosing it, eventhough it could be passed as a argument for functions. 
-// I did it only to be able to fiddle with it in the browsers console. 
-
-
 (function initializeDatabase(){
   fetch("https://www.marviq.com/assessment/index.php?page=a&from=2018-01-07%2000:00:00")
   .then( response => {
@@ -11,13 +5,12 @@ var MACHINESDETAILEDINFORMATION;
     return response.json()
   })
   .then( json => {
-    console.log("We have succesfully initialized your database! [check `MACHINESDETAILEDINFORMATION`]");
-    MACHINESDETAILEDINFORMATION = json; //Polluting global scope for other script to have access to data fetched
-    //After loading database the site produces the output. I chose inputs so It's easier to retrive data from it and then work on it in console for developer use.
-    view_netProduction();
-    view_downtime();
-    view_scrapVsGross();
-    view_charts();
+    console.log("We have succesfully initialized your database!");
+    
+    view_netProduction(json);
+    view_downtime(json);
+    view_scrapVsGross(json);
+    view_charts(json);
     setTimeout(function(){ //To make sure we had everything ready I am giving the browser 1s
       showPage();
     },1000);
@@ -54,7 +47,7 @@ function downtime(object){
 
 /* Functions below are made only for filling the page with the templates. */
 
-function view_netProduction(){
+function view_netProduction(input){
   var netProdList = document.querySelector("#netProdListing"); // Place where the output will be shown.
 
   let template = function(name, net){
@@ -63,13 +56,13 @@ function view_netProduction(){
               <input type="number" id="${name}_netprod" value="${net}" readonly="readonly">
             </div>`
   }
-
-  MACHINESDETAILEDINFORMATION.forEach(machine => { 
+  
+  input.forEach(machine => { 
     netProdList.innerHTML = netProdList.innerHTML + template(machine.MACHINE, netProduction(machine));
   });
 }
 
-function view_scrapVsGross(){
+function view_scrapVsGross(input){
   var scrapvgrossList = document.querySelector("#scrapVGrossListing"); // Place where the output will be shown.
 
   let template = function(name, scrap, gross){
@@ -79,13 +72,13 @@ function view_scrapVsGross(){
             </div>`
   }
 
-  MACHINESDETAILEDINFORMATION.forEach(machine => { 
+  input.forEach(machine => { 
     scrapvgrossList.innerHTML = scrapvgrossList.innerHTML + template(machine.MACHINE, scrapVsGross(machine)[0], scrapVsGross(machine)[1]);
   });
   
 }
 
-function view_downtime(){
+function view_downtime(input){
   var dtList = document.querySelector("#dtlisting"); // Place where the output will be shown.
 
   let template = function(name, dt){
@@ -96,38 +89,39 @@ function view_downtime(){
             </div>`
   }
 
-  MACHINESDETAILEDINFORMATION.forEach(machine => { // walking through enire arry of machines and getiing each machine downtime + rounding up to better show data.
+  input.forEach(machine => { // walking through enire arry of machines and getiing each machine downtime + rounding up to better show data.
     dtList.innerHTML = dtList.innerHTML + template(machine.MACHINE, Math.round(downtime(machine) * 100) / 100);
   });
 }
+
+
+
+// Scripts below are mostly for the looks. But, hey! It's what matters in front-end!
 
 function showPage() { // To avoid 'poping up' on user with the data.
   document.body.removeChild(document.querySelector(".loader"));
   document.body.removeChild(document.querySelector(".loader-welcomeMsg"));
   document.querySelector(".wrapper").style.display = "initial";
-  document.querySelector(".admin-panel").style.display = "block";
 }
-
-
-
 function hideElements(selectors){
   selectors.forEach(element => {
     document.querySelector(element).classList.remove('visible');
   });
 }
 function show_states(){
-  hideElements(["#netProdListing","#dtlisting","#scrapVGrossListing"])
+  hideElements(["#netProdListing","#dtlisting","#scrapVGrossListing","#netCharts"])
   document.querySelector("#states").classList.add('visible');
 }
 function show_net(){
   hideElements(["#states","#dtlisting","#scrapVGrossListing"])
   document.querySelector("#netProdListing").classList.add('visible');
+  document.querySelector("#netCharts").classList.add('visible');
 }
 function show_dt(){
-  hideElements(["#states","#netProdListing","#scrapVGrossListing"])
+  hideElements(["#states","#netProdListing","#scrapVGrossListing","#netCharts"])
   document.querySelector("#dtlisting").classList.add('visible');
 }
 function show_svg(){
-  hideElements(["#states","#netProdListing","#dtlisting"])
+  hideElements(["#states","#netProdListing","#dtlisting","#netCharts"])
   document.querySelector("#scrapVGrossListing").classList.add('visible');
 }

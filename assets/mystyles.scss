@@ -81,6 +81,8 @@ body, html{
   justify-content: center;
   color: #3498db;
   font-size: 1em;
+  position: relative;
+  top: 20vh;
 }
 @keyframes spin {
   0% { transform: rotate(0deg); }

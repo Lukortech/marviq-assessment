@@ -1,15 +1,3 @@
-//{"2x2 brick mould":"warning\/orange","3x2 brick mould":"fatal\/red","4x2 brick mould":"good\/green"}
-/* 
-
-Assignment B
-Indicate (using colors or text) another status of the machine based on it’s core temperature over de last 24 hours.
-
-Use good/green as default
-Use warning/orange if the temperature has been over 85, but under or equal to 100 degrees for more than 15 minutes.
-Use fatal/red when [higher than 100 degrees] or [higher than 85 degrees for longer than 15 minutes].
-
-*/
-
 (function initializeStates(){
   fetch("https://www.marviq.com/assessment/index.php?page=b&from=2018-01-07%2000:00:00")
   .then( response => {
@@ -17,9 +5,7 @@ Use fatal/red when [higher than 100 degrees] or [higher than 85 degrees for long
     return response.json()
   })
   .then( json => {
-    console.log("States: ", json);
-    MACHINESSTATES = json;
-    view_states(MACHINESSTATES);
+    view_states(json);
   })
   .catch( err => {
     err.text().then( errorMessage => {
