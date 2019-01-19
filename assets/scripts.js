@@ -1,5 +1,6 @@
 var MACHINESDETAILEDINFORMATION; 
-// The only global variable for other functions to use it. I am not enclosing it, eventhough it could be passed as a argument for funcctions. 
+// The only global variable for other functions to use it (charts). 
+//I am not enclosing it, eventhough it could be passed as a argument for functions. 
 // I did it only to be able to fiddle with it in the browsers console. 
 
 

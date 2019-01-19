@@ -9,7 +9,7 @@ Use warning/orange if the temperature has been over 85, but under or equal to 10
 Use fatal/red when [higher than 100 degrees] or [higher than 85 degrees for longer than 15 minutes].
 
 */
-var MACHINESSTATES;
+
 (function initializeStates(){
   fetch("https://www.marviq.com/assessment/index.php?page=b&from=2018-01-07%2000:00:00")
   .then( response => {
