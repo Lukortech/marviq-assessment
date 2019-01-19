@@ -47,6 +47,8 @@ button{
 #scrapVGrossListing{
   div{
     margin: 1em 0;
+    &:first-child{margin: 0 0;}
+    &:last-child{margin: 0 0;}
   }
 }
 .data-tables{
