@@ -81,7 +81,7 @@ function view_netProduction(){
   MACHINESDETAILEDINFORMATION.forEach(machine => { 
     netProdList.innerHTML = netProdList.innerHTML + tag_template(machine.MACHINE, netProduction(machine));
   });
-  netProdList.innerHTML = netProdList.innerHTML + `<button onclick="view_netProduction();">update net production</button>`; 
+  netProdList.innerHTML = netProdList.innerHTML + `<!--<button onclick="view_netProduction();">update net production</button>-->`; 
 }
 
 function view_scrapVsGross(){
@@ -99,7 +99,7 @@ function view_scrapVsGross(){
   MACHINESDETAILEDINFORMATION.forEach(machine => { 
     scrapvgrossList.innerHTML = scrapvgrossList.innerHTML + tag_template(machine.MACHINE, scrapVsGross(machine)[0], scrapVsGross(machine)[1]);
   });
-  scrapvgrossList.innerHTML = scrapvgrossList.innerHTML + `<button onclick="view_scrapVsGross();">update scrap v gross</button>`; 
+  scrapvgrossList.innerHTML = scrapvgrossList.innerHTML + `<!--<button onclick="view_scrapVsGross();">update scrap v gross</button>-->`; 
 }
 
 function view_downtime(){
@@ -114,7 +114,7 @@ function view_downtime(){
   MACHINESDETAILEDINFORMATION.forEach(machine => { // walking through enire arry of machines and getiing each machine downtime + rounding up to better show data.
     dtList.innerHTML = dtList.innerHTML + tag_template(machine.MACHINE, Math.round(downtime(machine) * 100) / 100);
   });
-  dtList.innerHTML = dtList.innerHTML + `<button onclick="view_downtime();">update downtime</button>`; // Inserting the button to keep the manual update() function availible for user
+  dtList.innerHTML = dtList.innerHTML + `<!--<button onclick="view_downtime();">update downtime</button>-->`; // Inserting the button to keep the manual update() function availible for user
 }
 
 
