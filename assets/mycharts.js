@@ -16,11 +16,10 @@ function drawChart() {
   var options = {'title':`Net production of Machine${arg+1}`, 'width':550, 'height':400};
 
   // Display the chart inside the <div> element with id="piechart"
-  var chart = new google.visualization.PieChart(document.querySelector(`#piechart${arg}`));
+  var chart = new google.visualization.BarChart(document.querySelector(`#piechart${arg}`));
   chart.draw(data, options);
 }
 }
-
 
 //A graph/table showing the net production (gross production – scrap) for every hour.
 
@@ -35,4 +34,11 @@ function retriveChartData(arg){
   machineEntries.splice(0,0,["Hour", "Net production"]);
   //foreach machineEntries[1] reassign value by scrap_percentage
   return machineEntries;
+}
+
+
+function view_charts(){
+  draw_chart(0);
+  draw_chart(1);
+  draw_chart(2);
 }

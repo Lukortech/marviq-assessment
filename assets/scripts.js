@@ -19,30 +19,27 @@ var MACHINESDETAILEDINFORMATION;
   fetch("https://www.marviq.com/assessment/index.php?page=a&from=2018-01-07%2000:00:00")
   .then( response => {
     if (!response.ok) { throw response }
-    return response.json()  //we only get here if there is no error
+    return response.json()
   })
   .then( json => {
-    console.warn("We have succesfully initialized your database! [check `machinesDetailedInformation`]");
-    MACHINESDETAILEDINFORMATION = json;
-    (function popup(){
-      var flasher = `<span class="flasher">We have initialized the database! you're good to go! <i style="cursor:pointer; color:red;" class="fas fa-times" onclick="deleteFlasher();"></i></span>`;
-      document.body.innerHTML = document.body.innerHTML + flasher;
-    })();
+    console.log("We have succesfully initialized your database! [check `machinesDetailedInformation`]");
+    MACHINESDETAILEDINFORMATION = json; //Polluting global scope for other script to have access to data fetched
+    //After loading database the site produces the output. I chose inputs so It's easier to retrive data from it and then work on it in console for developer use.
     view_netProduction();
     view_downtime();
     view_scrapVsGross();
+    view_charts();
+    setTimeout(function(){
+      showPage();
+    },1000);
   })
   .catch( err => {
     err.text().then( errorMessage => {
-      console.log("We couldn't initialize the database." + errorMessage);
+      console.error("We couldn't initialize the database. " + errorMessage);
     })
   })
 })();
 
-//Small popup to let you know everything is fine
-function deleteFlasher(){ 
-  document.body.removeChild(document.querySelector(".flasher"));
-};
 
 
 
@@ -111,7 +108,7 @@ function view_downtime(){
   dtList.innerHTML = ''; // Cleaning it up, before update.
 
   let tag_template = function(name, dt){
-    return `<div><label>Downtime of ${name}: </label><input type="number" id="${name}_dtime" value="${dt}" readonly="readonly"><br/></div>`
+    return `<div><label>Downtime of ${name}: </label><input type="number" id="${name}_dtime" value="${dt}" readonly="readonly"> <small> (In hours)</small><br/></div>`
   }
 
   MACHINESDETAILEDINFORMATION.forEach(machine => { // walking through enire arry of machines and getiing each machine downtime + rounding up to better show data.
@@ -121,3 +118,10 @@ function view_downtime(){
 }
 
 
+
+
+
+function showPage() {
+  document.body.removeChild(document.querySelector(".loader"));
+  document.querySelector(".wrapper").style.display = "block";
+}
