@@ -95,9 +95,9 @@ body, html {
 }
 
 .loader {
-  position: absolute;
-  left: 50%;
-  top: 50%;
+  position: fixed;
+  top: 30%;
+  left: 45%;
   border: 16px solid #f3f3f3;
   /* Light grey */
   border-top: 16px solid #3498db;
@@ -107,6 +107,19 @@ body, html {
   height: 120px;
   -webkit-animation: spin 2s linear infinite;
           animation: spin 2s linear infinite;
+}
+
+.loader-welcomeMsg {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  color: #3498db;
+  font-size: 1em;
 }
 
 @-webkit-keyframes spin {
@@ -134,4 +147,33 @@ body, html {
 /*select, input {
   margin: 0 0.4em; 
 }*/
+.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s;
+}
+
+@-webkit-keyframes animatebottom {
+  from {
+    bottom: -100px;
+    opacity: 0;
+  }
+  to {
+    bottom: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes animatebottom {
+  from {
+    bottom: -100px;
+    opacity: 0;
+  }
+  to {
+    bottom: 0;
+    opacity: 1;
+  }
+}
 /*# sourceMappingURL=mystyles.css.map */

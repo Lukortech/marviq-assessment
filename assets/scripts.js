@@ -123,5 +123,6 @@ function view_downtime(){
 
 function showPage() {
   document.body.removeChild(document.querySelector(".loader"));
+  document.body.removeChild(document.querySelector(".loader-welcomeMsg"));
   document.querySelector(".wrapper").style.display = "block";
 }
