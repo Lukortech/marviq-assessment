@@ -13,7 +13,8 @@ function drawChart() {
   );
 
   // Optional; add a title and set the width and height of the chart
-  var options = {'title':`Net production of Machine${arg+1}`, 'width':550, 'height':400};
+  
+  var options = {'title':`Net production of Machine${arg+1}`, 'width':550, 'height':400, 'colors': ['#3498db', '#364652', '#A1C6EA', '#374A67', '#CCDBDC']};
 
   // Display the chart inside the <div> element with id="piechart"
   var chart = new google.visualization.BarChart(document.querySelector(`#piechart${arg}`));

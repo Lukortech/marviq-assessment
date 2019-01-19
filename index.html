@@ -36,89 +36,94 @@
         </section>
 
         -->
-
+        <div class=tabs>
+          <a class="hvr-buzz-out" rel="noopener noreferrer" href="javascript:void(0);" onclick="show_states();">States</a>
+          <a class="hvr-buzz-out" rel="noopener noreferrer" href="javascript:void(0);" onclick="show_net()">Net production</a>
+          <a class="hvr-buzz-out" rel="noopener noreferrer" href="javascript:void(0);" onclick="show_dt()">Down time</a>
+          <a class="hvr-buzz-out" rel="noopener noreferrer" href="javascript:void(0);" onclick="show_svg()">Scrap vs Gross</a>
+        </div>
         <section class="data-presentation">
-            <div class="charts data-tables" id="states"></div>
-            <div class="charts data-tables" id="netProdListing"></div>
-            <div class="charts data-tables" id="dtlisting"></div>
-            <div class="charts data-tables" id="scrapVGrossListing"></div>
-            <div class="selectors">
-                <label>Starting hour
-                    <select id="hfrom" name="hour_from" disabled>
-                        <option value="0" selected> 12am </option>
-                        <option value="1"> 1am </option>
-                        <option value="2"> 2am </option>
-                        <option value="3"> 3am </option>
-                        <option value="4"> 4am </option>
-                        <option value="5"> 5am </option>
-                        <option value="6"> 6am </option>
-                        <option value="7"> 7am </option>
-                        <option value="8"> 8am </option>
-                        <option value="9"> 9am </option>
-                        <option value="10"> 10am </option>
-                        <option value="11"> 11am </option>
-                        <option value="12"> 12pm </option>
-                        <option value="13"> 1pm </option>
-                        <option value="14"> 2pm </option>
-                        <option value="15"> 3pm </option>
-                        <option value="16"> 4pm </option>
-                        <option value="17"> 5pm </option>
-                        <option value="18"> 6pm </option>
-                        <option value="19"> 7pm </option>
-                        <option value="20"> 8pm </option>
-                        <option value="21"> 9pm </option>
-                        <option value="22"> 10pm </option>
-                        <option value="23"> 11pm </option>
-                    </select>
-                </label>
-                <label>Ending hour
-                    <select id="hto" name="hour_to" disabled>
-                        <option value="0"> 12am </option>
-                        <option value="1"> 1am </option>
-                        <option value="2"> 2am </option>
-                        <option value="3"> 3am </option>
-                        <option value="4"> 4am </option>
-                        <option value="5"> 5am </option>
-                        <option value="6"> 6am </option>
-                        <option value="7"> 7am </option>
-                        <option value="8"> 8am </option>
-                        <option value="9"> 9am </option>
-                        <option value="10"> 10am </option>
-                        <option value="11"> 11am </option>
-                        <option value="12"> 12pm </option>
-                        <option value="13"> 1pm </option>
-                        <option value="14"> 2pm </option>
-                        <option value="15"> 3pm </option>
-                        <option value="16"> 4pm </option>
-                        <option value="17"> 5pm </option>
-                        <option value="18"> 6pm </option>
-                        <option value="19"> 7pm </option>
-                        <option value="20"> 8pm </option>
-                        <option value="21"> 9pm </option>
-                        <option value="22"> 10pm </option>
-                        <option value="23" selected> 11pm </option>
-                    </select>
-                </label>
-                <label>Option to chose
-                    <select id="filtername" name="option1" disabled>
-                        <option value="dtime"> DOWNTIME </option>
-                        <option value="production" selected> PRODUCTION </option>
-                        <option value="scraps"> SCRAP_PERCENTAGE </option>
-                    </select>
-                </label>
-                <button onclick="applyFilters();" disabled>Update charts</button>
-                <small style="opacity:0.5;"> for future use as we get more options to run the dashboard</small>
-            </div>
+          <div class="charts data-tables animate-bottom" id="states"></div>
+          <div class="charts data-tables animate-bottom" id="netProdListing"></div>
+          <div class="charts data-tables animate-bottom" id="dtlisting"></div>
+          <div class="charts data-tables animate-bottom" id="scrapVGrossListing"></div>
+          <div class="selectors">
+              <label>Starting hour
+                  <select id="hfrom" name="hour_from" disabled>
+                      <option value="0" selected> 12am </option>
+                      <option value="1"> 1am </option>
+                      <option value="2"> 2am </option>
+                      <option value="3"> 3am </option>
+                      <option value="4"> 4am </option>
+                      <option value="5"> 5am </option>
+                      <option value="6"> 6am </option>
+                      <option value="7"> 7am </option>
+                      <option value="8"> 8am </option>
+                      <option value="9"> 9am </option>
+                      <option value="10"> 10am </option>
+                      <option value="11"> 11am </option>
+                      <option value="12"> 12pm </option>
+                      <option value="13"> 1pm </option>
+                      <option value="14"> 2pm </option>
+                      <option value="15"> 3pm </option>
+                      <option value="16"> 4pm </option>
+                      <option value="17"> 5pm </option>
+                      <option value="18"> 6pm </option>
+                      <option value="19"> 7pm </option>
+                      <option value="20"> 8pm </option>
+                      <option value="21"> 9pm </option>
+                      <option value="22"> 10pm </option>
+                      <option value="23"> 11pm </option>
+                  </select>
+              </label>
+              <label>Ending hour
+                  <select id="hto" name="hour_to" disabled>
+                      <option value="0"> 12am </option>
+                      <option value="1"> 1am </option>
+                      <option value="2"> 2am </option>
+                      <option value="3"> 3am </option>
+                      <option value="4"> 4am </option>
+                      <option value="5"> 5am </option>
+                      <option value="6"> 6am </option>
+                      <option value="7"> 7am </option>
+                      <option value="8"> 8am </option>
+                      <option value="9"> 9am </option>
+                      <option value="10"> 10am </option>
+                      <option value="11"> 11am </option>
+                      <option value="12"> 12pm </option>
+                      <option value="13"> 1pm </option>
+                      <option value="14"> 2pm </option>
+                      <option value="15"> 3pm </option>
+                      <option value="16"> 4pm </option>
+                      <option value="17"> 5pm </option>
+                      <option value="18"> 6pm </option>
+                      <option value="19"> 7pm </option>
+                      <option value="20"> 8pm </option>
+                      <option value="21"> 9pm </option>
+                      <option value="22"> 10pm </option>
+                      <option value="23" selected> 11pm </option>
+                  </select>
+              </label>
+              <label>Option to chose
+                  <select id="filtername" name="option1" disabled>
+                      <option value="dtime"> DOWNTIME </option>
+                      <option value="production" selected> PRODUCTION </option>
+                      <option value="scraps"> SCRAP_PERCENTAGE </option>
+                  </select>
+              </label>
+              <button onclick="applyFilters();" disabled>Update charts</button>
+              <small style="opacity:0.5;"> for future use as we get more options to run the dashboard</small>
+          </div>
 
-            <div class="">
-                <div id="piechart0"></div>
-                <div id="piechart1"></div>
-                <div id="piechart2"></div>
-            </div>
+          <div class="">
+              <div id="piechart0"></div>
+              <div id="piechart1"></div>
+              <div id="piechart2"></div>
+          </div>
         </section>
     </div>
 
-    <img class="floatie" src="https://pbs.twimg.com/profile_images/955360967449247745/g40nQZEW_400x400.jpg" alt="marviq logo" width="100" height="100">
+    <img class="floatie" src="https://www.marviq.com/assessment/Marviq-logo_breed.png" alt="marviq logo" width="400" height="55">
     <script src="./assets/scripts.js"></script>
     <script src="./assets/mycharts.js"></script>
     <script src="./assets/colouring.js"></script>
