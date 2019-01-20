@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,10 +8,12 @@
     <link rel="stylesheet" href="./assets/basestyles.css">
     <link rel="stylesheet" href="./assets/mystyles.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" crossorigin="anonymous">
+    <!--
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" crossorigin="anonymous">
+      <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+      <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+    -->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
-    <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
 </head>
 
 <body>
@@ -41,12 +42,14 @@
           <a class="hvr-buzz-out" rel="noopener noreferrer" href="javascript:void(0);" onclick="show_net()">Net production</a>
           <a class="hvr-buzz-out" rel="noopener noreferrer" href="javascript:void(0);" onclick="show_dt()">Down time</a>
           <a class="hvr-buzz-out" rel="noopener noreferrer" href="javascript:void(0);" onclick="show_svg()">Scrap vs Gross</a>
+          <a class="hvr-buzz-out" rel="noopener noreferrer" href="javascript:void(0);" onclick="show_oee()">Performance</a>
         </div>
         <section class="data-presentation">
           <div class="charts data-tables animate-bottom" id="states"></div>
           <div class="charts data-tables animate-bottom" id="netProdListing"></div>
           <div class="charts data-tables animate-bottom" id="dtlisting"></div>
           <div class="charts data-tables animate-bottom" id="scrapVGrossListing"></div>
+          <div class="charts data-tables animate-bottom" id="oee"></div>
           <div class="selectors">
               <label>Starting hour
                   <select id="hfrom" name="hour_from" disabled>
@@ -112,10 +115,12 @@
                   </select>
               </label>
               <button onclick="applyFilters();" disabled>Update charts</button>
-              <small style="opacity:0.5;"> for future use as we get more options to run the dashboard</small>
+              <!-- 
+                <small style="opacity:0.5;"> for future use as we get more options to run the dashboard</small> 
+              -->
           </div>
 
-          <div class="">
+          <div class="charts animate-bottom" id="netCharts">
               <div id="piechart0"></div>
               <div id="piechart1"></div>
               <div id="piechart2"></div>
@@ -127,6 +132,7 @@
     <script src="./assets/scripts.js"></script>
     <script src="./assets/mycharts.js"></script>
     <script src="./assets/colouring.js"></script>
+    <script src="./assets/oee.js"></script>
 </body>
 
 </html>
