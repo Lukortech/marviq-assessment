@@ -1,3 +1,42 @@
+@media only screen and (max-width: 700px) {
+  .tabs {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+  }
+  .tabs a {
+    border: 1px solid #3498db;
+    color: #3498db;
+    text-decoration: none;
+    padding: 0.4em 1em;
+    margin: 0.2em 1em;
+    border-radius: 2em;
+    border-top-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  #netCharts {
+    left: -15%;
+  }
+}
+
+@media only screen and (max-width: 520px) {
+  #netCharts {
+    left: -25%;
+  }
+  .floatie {
+    right: -25%;
+  }
+}
+
 .wrapper {
   display: none;
 }
@@ -31,16 +70,6 @@ section {
 }
 
 /*
-@media only screen and (max-width:450px) { 
-	.charts{
-    display:flex;
-    flex-direction: column;
-  }
-  .flasher{
-    position:fixed; top:0; background: #CCC; width:100%; opacity:0.6; font-size:1em;
-  }
-}
-
 @media only screen and (max-width:900px) { 
 	.charts{
     display:flex;
@@ -91,8 +120,8 @@ body, html {
 
 .loader {
   position: fixed;
-  top: 30%;
-  left: 45%;
+  top: 40%;
+  left: 46%;
   border: 16px solid #f3f3f3;
   /* Light grey */
   border-top: 16px solid #3498db;
@@ -180,14 +209,20 @@ body, html {
   display: flex;
   -ms-flex-pack: distribute;
       justify-content: space-around;
+  padding: 0.4em;
+  -webkit-box-shadow: 0 3px 2px 0 #3498db;
+          box-shadow: 0 3px 2px 0 #3498db;
 }
 
 .tabs a {
+  background: white;
   border: 1px solid #3498db;
   color: #3498db;
   text-decoration: none;
-  padding: 0.4em;
+  padding: 0.4em 1em;
   border-radius: 2em;
+  border-top-left-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
 .visible {

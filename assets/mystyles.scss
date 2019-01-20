@@ -1,3 +1,36 @@
+@media only screen and (max-width:700px) { 
+	.tabs{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    a{
+      border: 1px solid #3498db;
+      color: #3498db;
+      text-decoration: none;
+      padding: 0.4em 1em;
+      margin: 0.2em 1em ;
+      border-radius: 2em;
+      border-top-left-radius:0;
+      border-bottom-right-radius:0;
+  
+    }
+  }
+}
+@media only screen and (max-width: 640px){
+  #netCharts{
+    left:-15%;
+  }
+}
+@media only screen and (max-width: 520px){
+  #netCharts{
+    left:-25%;
+  }
+  .floatie{
+    right: -25%;
+  }
+}
+
+
 .wrapper{
   display:none;
 }
@@ -18,18 +51,7 @@ section{
   align-content: space-around;
 }
 
-
 /*
-@media only screen and (max-width:450px) { 
-	.charts{
-    display:flex;
-    flex-direction: column;
-  }
-  .flasher{
-    position:fixed; top:0; background: #CCC; width:100%; opacity:0.6; font-size:1em;
-  }
-}
-
 @media only screen and (max-width:900px) { 
 	.charts{
     display:flex;
@@ -66,8 +88,8 @@ body, html{
 }
 .loader {//Thanks to W3School
   position: fixed;
-  top: 30%;
-  left: 45%;
+  top: 40%;
+  left: 46%;
   border: 16px solid #f3f3f3; /* Light grey */
   border-top: 16px solid #3498db; /* Blue */
   border-radius: 50%;
@@ -94,7 +116,6 @@ body, html{
 
 
 //https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_loader5
-
 .animate-bottom {
   position: relative;
   -webkit-animation-name: animatebottom;
@@ -110,12 +131,19 @@ body, html{
 .tabs{
   display:flex;
   justify-content: space-around;
+  padding:0.4em;
+  //background: rgba(52, 152, 219,.5);
+  box-shadow: 0 3px 2px 0 #3498db;
   a{
+    background:white;
     border: 1px solid #3498db;
     color: #3498db;
     text-decoration: none;
-    padding: 0.4em;
+    padding: 0.4em 1em;
     border-radius: 2em;
+    border-top-left-radius:0;
+    border-bottom-right-radius:0;
+
 	}
 }
 .visible{
@@ -230,7 +258,6 @@ body, html{
 	animation-iteration-count: 1;
 }
 
-
 /* Forward */
 
 .hvr-forward {
@@ -251,7 +278,6 @@ body, html{
 	-webkit-transform: translateX(8px);
 	transform: translateX(8px);
 }
-
 
 /* Backward */
 

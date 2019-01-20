@@ -56,7 +56,7 @@ function view_netProduction(input){
               <input type="number" id="${name}_netprod" value="${net}" readonly="readonly">
             </div>`
   }
-  
+
   input.forEach(machine => { 
     netProdList.innerHTML = netProdList.innerHTML + template(machine.MACHINE, netProduction(machine));
   });
@@ -109,19 +109,41 @@ function hideElements(selectors){
   });
 }
 function show_states(){
-  hideElements(["#netProdListing","#dtlisting","#scrapVGrossListing","#netCharts"])
+  hideElements(["#netProdListing","#dtlisting","#scrapVGrossListing","#netCharts","#oee"])
   document.querySelector("#states").classList.add('visible');
 }
 function show_net(){
-  hideElements(["#states","#dtlisting","#scrapVGrossListing"])
+  hideElements(["#states","#dtlisting","#scrapVGrossListing","#oee"])
   document.querySelector("#netProdListing").classList.add('visible');
   document.querySelector("#netCharts").classList.add('visible');
 }
 function show_dt(){
-  hideElements(["#states","#netProdListing","#scrapVGrossListing","#netCharts"])
+  hideElements(["#states","#netProdListing","#scrapVGrossListing","#netCharts","#oee"])
   document.querySelector("#dtlisting").classList.add('visible');
 }
 function show_svg(){
-  hideElements(["#states","#netProdListing","#dtlisting","#netCharts"])
+  hideElements(["#states","#netProdListing","#dtlisting","#netCharts","#oee"])
   document.querySelector("#scrapVGrossListing").classList.add('visible');
 }
+function show_oee(){
+  hideElements(["#states","#netProdListing","#dtlisting","#netCharts","#scrapVGrossListing"])
+  document.querySelector("#oee").classList.add('visible');
+}
+
+
+(function resizableLogo(){
+  var query = window.matchMedia("(max-width: 450px)");
+  var floatie = document.querySelector(".floatie");
+  function myFunction(query) {
+    if (query.matches) { // If media query matches
+      floatie.src = 'https://pbs.twimg.com/profile_images/955360967449247745/g40nQZEW_400x400.jpg';
+      floatie.height = 100;
+      floatie.width = 100;
+    } else {
+      floatie.src = 'https://www.marviq.com/assessment/Marviq-logo_breed.png';
+    }
+  }
+  
+  myFunction(query) // Call listener function at run time
+  query.addListener(myFunction) // Attach listener function on state changes
+})();

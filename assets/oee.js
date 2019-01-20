@@ -8,6 +8,10 @@ Quality% = (actual gross production - actual scrap) / actual gross production * 
 Assume a norm gross production of 30.000 bricks per hour.
 
 Assume a norm uptime of 75% (is 16 hours / 24 hours).
+
+
+NOTE: I am somewhat puzzled about the API returning the data needed for operations, so why should I calculate it all? 
+I might have gotten it wrong, please let me know if I did. 
 ********************************************************************/
 
 (function lol(){
@@ -27,7 +31,19 @@ Assume a norm uptime of 75% (is 16 hours / 24 hours).
 })();
 
 function oee(input){
+  var oeeElem = document.querySelector("#oee"); // Place where the output will be shown.
+
+  let template = function(name, value){
+    return `<div>
+              <label>OEE of ${name}: </label>
+              <input type="number" value="${value}" readonly="readonly"> 
+              <small> %</small><br/>
+            </div>`
+  }
+  var oee = function(machine){
+    return Math.round(machine.OEE*machine.PERFORMANCE*machine.QUALITY *100)/ 100;
+  }
   input.forEach(element => {
-    console.log(element.OEE*element.PERFORMANCE*element.QUALITY);
+    oeeElem.innerHTML = (oeeElem.innerHTML + template(element.MACHINE,oee(element)));
   });
 }
